@@ -22,5 +22,8 @@ public class Service1Controller {
         return feignService.getFromService2();
     }
 
-
+    @RequestMapping(method = RequestMethod.GET, value = "protected")
+    public String protectedPoint() {
+        return "protected";
+    }
 }

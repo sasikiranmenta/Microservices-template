@@ -11,4 +11,9 @@ public class Service2Controller {
     public String hello() {
         return "Hello World from Service2";
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/protected")
+    public String protectEndpoint() {
+        return "Protected End point";
+    }
 }
