@@ -3,5 +3,6 @@ include 'gateway'
 include 'service1'
 include 'service2'
 include 'configserver'
+include 'spring-authorization-server'
 
 
