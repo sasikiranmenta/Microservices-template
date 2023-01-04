@@ -10,6 +10,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @EnableWebSecurity
@@ -30,11 +33,27 @@ public class SpringSecurityConfiguration {
 
     @Bean
     UserDetailsService users() {
-        UserDetails user = User.withDefaultPasswordEncoder()
+        List<UserDetails> users = new ArrayList<>();
+        UserDetails user1 = User.withDefaultPasswordEncoder()
                 .username("user1")
                 .password("password")
                 .roles("USER")
                 .build();
-        return new InMemoryUserDetailsManager(user);
+        users.add(user1);
+
+        UserDetails user2 = User.withDefaultPasswordEncoder()
+                .username("edit")
+                .password("password")
+                .roles("USER", "EDIT")
+                .build();
+
+        UserDetails user3 = User.withDefaultPasswordEncoder()
+                .username("delete")
+                .password("password")
+                .roles("USER", "DELETE")
+                .build();
+        users.add(user2);
+        users.add(user3);
+        return new InMemoryUserDetailsManager(users);
     }
 }
